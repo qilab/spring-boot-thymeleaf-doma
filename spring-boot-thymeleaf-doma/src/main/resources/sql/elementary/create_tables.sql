@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS student;
+
+CREATE TABLE student
+(
+id INT AUTO_INCREMENT,
+name VARCHAR(20),
+age INT,
+address VARCHAR(255),
+INDEX(id)
+);

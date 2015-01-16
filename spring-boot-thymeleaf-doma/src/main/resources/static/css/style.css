@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+
+/* --- 全体の背景・テキスト --- */
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffff; /* ページの背景色 */
+	color: #000000; /* 全体の文字色 */
+	font-size: 100%; /* 全体の文字サイズ */
+	word-break: break-all; /* 長い英単語は強制改行 */
+	font-family:'Lucida Grande',
+				'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
+				Meiryo, メイリオ, sans-serif;
+}
+
+p {
+	margin: 5px 0;
+}
+
+/* --- 全体のリンクテキスト --- */
+a:link { color: #0000ff; }
+a:visited { color: #800080; }
+a:hover { color: #ff0000; }
+a:active { color: #ff0000; }
+
+/* --- コンテナ --- */
+#container {
+	width: 780px; /* ページの幅 */
+	margin: 0 auto; /* センタリング */
+	background-color: #ffffff; /* メインカラムの背景色 */
+	border: 1px #c0c0c0 solid; /* 左の境界線 */
+	margin-top: 10px;
+}
+
+/* --- ヘッダ --- */
+#header {
+	background-color: #ffe080; /* ヘッダの背景色 */
+}
+header {
+	padding: 10px 20px 10px 20px;
+}
+
+/* --- ナビゲーション --- */
+#nav {
+	float: left;
+	width: 200px; /* サイドバーの幅 */
+}
+
+#sidebar {
+	float: left;
+	width: 200px; /* サイドバーの幅 */
+	background-color: #F5F5F5;
+}
+#sidebar h3 {
+	text-align: center;
+	margin: 10px;
+}
+#sidebar ul {
+	margin: 10px 20px;
+}
+#sidebar li {
+	padding: 5px;
+}
+
+/* --- メインカラム --- */
+#content {
+	float: left;
+	width: 560px; /* メインカラムの幅 */
+	padding: 10px;
+	background-color: greenyellow;
+}
+
+/* --- フッタ --- */
+#footer {
+	clear: left; /* フロートのクリア */
+	width: 100%;
+	background-color: #ffe080; /* フッタの背景色 */
+}
+footer {
+	padding: 10px;
+	text-align: center;
+}
+
+#content .item {
+	border-collapse: collapse;
+	border: solid 2px gray;
+	width: 400px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#content .item th, #content .item td {
+	padding: 5px 10px;
+	border: solid 1px gray;
+}
+#content .item th {
+	width: 150px;
+	background-color: lightblue;
+}
+#content .item td {
+	background-color: white;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+#content li {
+}
+li.inline {
+	display: inline-block;
+	margin: 5px 20px;
+}
+
+.btn {
+	background-color: #c0c0c0;
+	display: inline-block;
+	padding: 2px 6px;
+	margin: 5px 0px;
+}
+
+.clearfix:after { /*floatの解除、ここがポイント*/
+	display:block;
+	clear:both;
+	height:0px;
+	visibility:hidden;
+	content:".";
+}

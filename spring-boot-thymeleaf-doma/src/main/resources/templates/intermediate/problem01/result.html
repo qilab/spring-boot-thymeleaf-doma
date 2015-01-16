@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/header :: common_head">
+	<meta charset="UTF-8"/>
+	<title>Spring Marathon</title>
+	
+	<link href="/css/style.cs" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+
+	<!-- ヘッダー開始 -->
+	<div id="header" th:replace="/common/header :: common_header"></div>
+	<!-- ヘッダー終了 -->
+	
+	<!-- ナビゲーション開始 -->
+	<div id="sidebar" th:replace="/common/sidebar :: common_sidebar"></div>
+	<!-- ナビゲーション終了 -->
+	
+	<!-- メインカラム開始 -->
+	<div id="content">
+		<div th:if="${baseballTeamDto != null}" th:object="${baseballTeamDto}">
+			<h3>球団名</h3>
+			<p th:text="*{name}"></p>
+			<h3>本拠地</h3>
+			<p th:text="*{base}"></p>
+			<h3>発足</h3>
+			<p th:text="*{#calendars.format(start, 'yyyy年M月d日')}"></p>
+			<h3>歴史</h3>
+			<p th:each="text : *{history}" th:text="${text}"></p>
+		</div>
+		<div th:unless="*{baseballTeamDto != null}">
+			<p>該当の球団は存在しません。</p>
+		</div>
+		<a href="../"><button>戻る</button></a>
+	</div>
+	<!-- メインカラム終了 -->
+	
+	<!-- フッター開始 -->
+	<div id="footer" th:replace="/common/footer :: common_footer"></div>
+	<!-- フッター終了 -->
+
+</div>
+<!-- コンテナ終了 -->
+</body>
+</html>

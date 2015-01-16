@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="/common/layout">
+<head th:replace="/common/header :: common_head">
+	<meta charset="UTF-8"/>
+	<title>Spring Marathon</title>
+	
+	<link href="/css/style.cs" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+
+	<!-- ヘッダー開始 -->
+	<div id="header" th:replace="/common/header :: common_header"></div>
+	<!-- ヘッダー終了 -->
+	
+	<div class="clearfix">
+		<!-- ナビゲーション開始 -->
+		<div id="sidebar" th:replace="/common/sidebar :: common_sidebar"></div>
+		<!-- ナビゲーション終了 -->
+		
+		<!-- メインカラム開始 -->
+		<div id="content" layout:fragment="content">
+			<form action="#" th:action="@{/members/search/}" method="post" th:object="${membersSearchForm}">
+				<table>
+					<tr>
+						<td>名前（カナ）</td>
+						<td>
+							<input type="text" th:field="*{nameKana}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>グループ</td>
+						<td>
+							<select th:field="*{groupsId}">
+								<option value="">グループを選択</option>
+								<option th:each="group : ${groupsList}"
+										th:value="${group.id}"
+										th:text="${group.name}">グループ名</option>
+							</select>
+						</td>
+						<td>
+							<input type="submit" value="検索"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+			<div th:if="${membersDto != null}">
+				<p th:text="'検索結果： ' + ${membersDto.count} + '件'">
+					検索結果： 0件
+				</p>
+				<table class="item" th:if="${membersDto.count > 0}">
+					<tr>
+						<th>名前（漢字）</th>
+						<th>名前（カナ）</th>
+						<th>メールアドレス</th>
+						<th>拠点</th>
+						<th>グループ</th>
+						<th>入社年月日</th>
+					</tr>
+					<tr th:each="member : ${membersDto.memberGroupDtoList}" th:object="${member}">
+						<td th:text="*{memberName}">山田太郎</td>
+						<td th:text="*{memberNameKana}">ヤマダタロウ</td>
+						<td th:text="*{mailAddress}">yamada@temp.com</td>
+						<td th:text="*{area}">東京</td>
+						<td th:text="*{groupName}">山田グループ</td>
+						<td th:text="*{#dates.format(joinDate, 'yyyy/M/d')}">2015/1/1</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!-- メインカラム終了 -->
+	</div>
+	
+	<!-- フッター開始 -->
+	<div id="footer" th:replace="/common/footer :: common_footer"></div>
+	<!-- フッター終了 -->
+
+</div>
+<!-- コンテナ終了 -->
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/header :: common_head">
+	<meta charset="UTF-8"/>
+	<title>Spring Marathon</title>
+	
+	<link href="/css/style.cs" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+
+	<!-- ヘッダー開始 -->
+	<div id="header" th:replace="/common/header :: common_header"></div>
+	<!-- ヘッダー終了 -->
+	
+	<!-- ナビゲーション開始 -->
+	<div id="sidebar" th:replace="/common/sidebar :: common_sidebar"></div>
+	<!-- ナビゲーション終了 -->
+	
+	<!-- メインカラム開始 -->
+	<div id="content">
+		<h3>ホテル検索</h3>
+		<form action="#" th:action="@{/intermediate/problem02/}" method="get" th:object="${problem02Form}">
+			<p>一泊料金 <input type="text" th:field="*{upperPrice}"/> 円以下</p>
+			<input type="submit" value="検索"/>
+		</form>
+		<table class="item" th:if="${hotelList != null}" th:each="hotel : ${hotelList}" th:object="${hotel}">
+			<tr>
+				<th>ホテル名</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>最寄り駅</th>
+				<td th:text="*{nearestStation}"></td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td th:text="*{price}"></td>
+			</tr>
+		</table>
+		<p th:unless="${hotelList != null}"></p>
+	</div>
+	<!-- メインカラム終了 -->
+	
+	<!-- フッター開始 -->
+	<div id="footer" th:replace="/common/footer :: common_footer"></div>
+	<!-- フッター終了 -->
+
+</div>
+<!-- コンテナ終了 -->
+</body>
+</html>

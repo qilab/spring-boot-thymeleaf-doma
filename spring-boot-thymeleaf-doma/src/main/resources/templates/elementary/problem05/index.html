@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/header :: common_head">
+	<meta charset="UTF-8"/>
+	<title>Spring Marathon</title>
+	
+	<link href="/css/style.cs" th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+
+	<!-- ヘッダー開始 -->
+	<div id="header" th:replace="/common/header :: common_header"></div>
+	<!-- ヘッダー終了 -->
+	
+	<!-- ナビゲーション開始 -->
+	<div id="sidebar" th:replace="/common/sidebar :: common_sidebar"></div>
+	<!-- ナビゲーション終了 -->
+	
+	<!-- メインカラム開始 -->
+	<div id="content">
+		<form action="result" th:action="@{result}" th:object="${problem05Form}" method="post">
+			<table>
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" th:field="*{id}" /></td>
+					<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">ID Error</td>
+				</tr>
+				<tr>
+					<td><button type="submit">検索</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- メインカラム終了 -->
+	
+	<!-- フッター開始 -->
+	<div id="footer" th:replace="/common/footer :: common_footer"></div>
+	<!-- フッター終了 -->
+
+</div>
+<!-- コンテナ終了 -->
+</body>
+</html>
