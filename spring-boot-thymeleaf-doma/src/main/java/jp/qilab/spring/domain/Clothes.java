@@ -1,4 +1,4 @@
-package jp.qilab.spring.domain.intermediate;
+package jp.qilab.spring.domain;
 
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;

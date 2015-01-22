@@ -21,7 +21,7 @@
 	<!-- メインカラム開始 -->
 	<div id="content">
 		<h3>ホテル検索</h3>
-		<form action="#" th:action="@{/intermediate/problem02/}" method="get" th:object="${problem02Form}">
+		<form action="#" th:action="@{/hotelSearch/}" method="get" th:object="${hotelSearchForm}">
 			<p>一泊料金 <input type="text" th:field="*{upperPrice}"/> 円以下</p>
 			<input type="submit" value="検索"/>
 		</form>

@@ -1,4 +1,4 @@
-package jp.qilab.spring.web.intermediate;
+package jp.qilab.spring.web;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import javax.validation.Valid;
 import jp.qilab.spring.dao.ClothesColorDao;
 import jp.qilab.spring.dao.ClothesDao;
 import jp.qilab.spring.dao.SexDao;
-import jp.qilab.spring.domain.intermediate.ClothesColor;
-import jp.qilab.spring.domain.intermediate.Sex;
+import jp.qilab.spring.domain.ClothesColor;
+import jp.qilab.spring.domain.Sex;
 import jp.qilab.spring.dto.ClothesDto;
-import jp.qilab.spring.form.intermediate.Problem03Form;
+import jp.qilab.spring.form.ClothesSearchForm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Transactional
-public class IntermediateProblem03 {
+public class ClothesSearch {
 	
 	@Autowired
 	SexDao sexDao;
@@ -33,9 +33,9 @@ public class IntermediateProblem03 {
 	@Autowired
 	ClothesDao clothesDao;
 
-	@RequestMapping("/intermediate/problem03/")
-	public ModelAndView index(Problem03Form problem03Form) {
-		ModelAndView modelAndView = new ModelAndView("intermediate/problem03/index");
+	@RequestMapping("/clothesSearch/")
+	public ModelAndView index(ClothesSearchForm clothesSearchForm) {
+		ModelAndView modelAndView = new ModelAndView("clothesSearch/index");
 		
 		List<Sex> sexList = sexDao.selectAll();
 		List<ClothesColor> clothesColorList = clothesColorDao.selectAll();
@@ -46,20 +46,20 @@ public class IntermediateProblem03 {
 		return modelAndView;
 	}
 
-	@RequestMapping(value="/intermediate/problem03/", method=RequestMethod.POST)
+	@RequestMapping(value="/clothesSearch/", method=RequestMethod.POST)
 	public ModelAndView search(
-			@Valid Problem03Form problem03Form, BindingResult bindingResult) {
+			@Valid ClothesSearchForm clothesSearchForm, BindingResult bindingResult) {
 		// エラー時は、indexページにリダイレクト
 		if (bindingResult.hasErrors()) {
-			return new ModelAndView("redirect:" + "/intermediate/problem03/");
+			return new ModelAndView("redirect:" + "/clothesSearch/");
 		}
 		
-		ModelAndView modelAndView = index(problem03Form);
+		ModelAndView modelAndView = index(clothesSearchForm);
 		
 		List<ClothesDto> clothesDtoList = clothesDao
 				.selectByClothesColorIdAndSexId(
-						problem03Form.getClothesColorId(),
-						problem03Form.getSexId());
+						clothesSearchForm.getClothesColorId(),
+						clothesSearchForm.getSexId());
 		modelAndView.addObject("clothesDtoList", clothesDtoList);
 		
 		return modelAndView;

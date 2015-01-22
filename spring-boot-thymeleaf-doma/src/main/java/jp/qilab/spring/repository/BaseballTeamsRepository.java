@@ -1,6 +1,6 @@
-package jp.qilab.spring.repository.intermediate;
+package jp.qilab.spring.repository;
 
-import jp.qilab.spring.domain.intermediate.BaseballTeam;
+import jp.qilab.spring.domain.BaseballTeam;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -24,19 +24,19 @@
 		
 		<!-- メインカラム開始 -->
 		<div id="content" layout:fragment="content">
-			<form action="#" th:action="@{/intermediate/problem03/}" method="post">
+			<form action="#" th:action="@{/clothesSearch/}" method="post">
 				<ul>
 					<li class="inline">
 						<ul>
 							<li th:each="sex : ${sexList}">
-								<input type="radio" th:field="${problem03Form.sexId}" th:value="${sex.id}" name="sexId"/>
+								<input type="radio" th:field="${clothesSearchForm.sexId}" th:value="${sex.id}" name="sexId"/>
 								<label th:for="${#ids.prev('sexId')}" th:text="${sex.name}">性別</label>
 							</li>
 							<li><span id="clearRadio" class="btn">clear</span></li>
 						</ul>
 					</li>
 					<li class="inline">
-						<select th:field="${problem03Form.clothesColorId}">
+						<select th:field="${clothesSearchForm.clothesColorId}">
 							<option value="">色を選択</option>
 							<option th:each="color : ${clothesColorList}"
 									th:value="${color.id}"

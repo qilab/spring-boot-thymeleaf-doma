@@ -1,13 +1,13 @@
-package jp.qilab.spring.web.intermediate;
+package jp.qilab.spring.web;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
-import jp.qilab.spring.domain.intermediate.BaseballTeam;
+import jp.qilab.spring.domain.BaseballTeam;
 import jp.qilab.spring.dto.BaseballTeamDto;
-import jp.qilab.spring.form.intermediate.Problem01Form;
-import jp.qilab.spring.repository.intermediate.BaseballTeamsRepository;
+import jp.qilab.spring.form.BaseballTeamsForm;
+import jp.qilab.spring.repository.BaseballTeamsRepository;
 import jp.qilab.spring.utils.TextUtil;
 
 import org.springframework.beans.BeanUtils;
@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class IntermediateProblem01 {
+public class BaseballTeams {
 
 	@Autowired
 	BaseballTeamsRepository baseballTeamsRepository;
 	
-	@RequestMapping("/intermediate/problem01/")
-	public ModelAndView index(Problem01Form problem01From) {
-		ModelAndView modelAndView = new ModelAndView("intermediate/problem01/index");
+	@RequestMapping("/baseballTeams/")
+	public ModelAndView index(BaseballTeamsForm baseballTeamsForm) {
+		ModelAndView modelAndView = new ModelAndView("baseballTeams/index");
 		
 		List<BaseballTeam> baseballTeamsList = baseballTeamsRepository.findAll();
 		
@@ -34,16 +34,16 @@ public class IntermediateProblem01 {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/intermediate/problem01/result/{id}")
-	public ModelAndView result(@Valid Problem01Form problem01Form, BindingResult bindingResult) {
+	@RequestMapping("/baseballTeams/team/{id}")
+	public ModelAndView result(@Valid BaseballTeamsForm baseballTeamsForm, BindingResult bindingResult) {
 		// エラー時は、indexページにリダイレクト
 		if (bindingResult.hasErrors()) {
-			return new ModelAndView("redirect:" + "/intermediate/problem01/");
+			return new ModelAndView("redirect:" + "/baseballTeams/");
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("intermediate/problem01/result");
+		ModelAndView modelAndView = new ModelAndView("baseballTeams/result");
 		
-		BaseballTeam baseballTeam = baseballTeamsRepository.findOne(problem01Form.getId());
+		BaseballTeam baseballTeam = baseballTeamsRepository.findOne(baseballTeamsForm.getId());
 		BaseballTeamDto baseballTeamDto = null;
 		
 		if (baseballTeam != null) {

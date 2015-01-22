@@ -1,8 +1,8 @@
-package jp.qilab.spring.repository.intermediate;
+package jp.qilab.spring.repository;
 
 import java.util.List;
 
-import jp.qilab.spring.domain.intermediate.Hotel;
+import jp.qilab.spring.domain.Hotel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

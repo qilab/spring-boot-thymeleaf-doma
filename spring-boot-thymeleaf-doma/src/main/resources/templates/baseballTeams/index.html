@@ -26,7 +26,7 @@
 		</div>
 		<ul>
 			<li th:each="team : ${baseballTeamsList}">
-				<a th:href="'result/' + ${team.id}" th:text="${team.name}">team name</a>
+				<a th:href="'team/' + ${team.id}" th:text="${team.name}">team name</a>
 			</li>
 		</ul>
 	</div>

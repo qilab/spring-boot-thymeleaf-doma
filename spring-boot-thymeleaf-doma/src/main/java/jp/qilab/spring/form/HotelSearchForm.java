@@ -1,6 +1,6 @@
-package jp.qilab.spring.form.intermediate;
+package jp.qilab.spring.form;
 
-public class Problem02Form {
+public class HotelSearchForm {
 
 	private Integer upperPrice;
 

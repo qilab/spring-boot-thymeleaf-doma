@@ -1,4 +1,4 @@
-package jp.qilab.spring.domain.intermediate;
+package jp.qilab.spring.domain;
 
 
 import org.seasar.doma.Entity;
@@ -8,8 +8,8 @@ import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 
 @Entity
-@Table(name = "sex")
-public class Sex {
+@Table(name = "clothes_color")
+public class ClothesColor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +32,5 @@ public class Sex {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 }

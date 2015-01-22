@@ -1,6 +1,6 @@
-package jp.qilab.spring.form.intermediate;
+package jp.qilab.spring.form;
 
-public class Problem01Form {
+public class BaseballTeamsForm {
 
 	private Integer id;
 
